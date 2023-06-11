@@ -1,0 +1,30 @@
+double ATP_level = 0; // Initial ATP level
+double ATP_factor = 1.5; // ATP factor to increase the level
+double ATP_distance = 100; // Distance to trigger the ATP
+
+// In the OnTick() function of your EA
+void OnTick()
+{
+    double current_price = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+    double take_profit = OrderTakeProfit();
+
+    // Calculate the current ATP level
+    double current_ATP = ATP_level + ATP_distance * Point;
+
+    // If the current price is below the current ATP level, update the take profit
+    if (current_price < current_ATP && take_profit > current_ATP)
+    {
+        // Calculate the new take profit level
+        double new_take_profit = current_ATP + ATP_distance * Point;
+        
+        // Modify the order take profit
+        bool result = OrderModify(OrderTicket(), OrderOpenPrice(), OrderStopLoss(), NormalizeDouble(new_take_profit, Digits), 0, Green);
+        
+        // If the modification is successful, update the ATP level
+        if (result)
+        {
+            ATP_level = new_take_profit;
+            ATP_distance *= ATP_factor;
+        }
+    }
+}

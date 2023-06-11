@@ -1,0 +1,138 @@
+﻿<Window x:Class="TestDataGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestDataGenerator"
+        mc:Ignorable="d"
+        Width="600" MinWidth="600" SizeToContent="Height" Loaded="OnLoaded"
+        Title="Backtest Generator" Style="{DynamicResource MainWindow}">
+
+    <Window.Resources>
+        <Style x:Key="MainWindow" TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="Legend" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style x:Key="SymbolButton" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        <Style x:Key="TimeframeButton" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        <Style x:Key="CommandButton" TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Padding" Value="2,0"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="CC Symbols" Margin="10" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ToggleButton Name="tbnSymbolAUDCAD" Grid.Row="0" Grid.Column="0" Style="{StaticResource SymbolButton}">AUDCAD</ToggleButton>
+                <ToggleButton Name="tbnSymbolAUDCHF" Grid.Row="0" Grid.Column="1" Style="{StaticResource SymbolButton}">AUDCHF</ToggleButton>
+                <ToggleButton Name="tbnSymbolAUDJPY" Grid.Row="0" Grid.Column="2" Style="{StaticResource SymbolButton}">AUDJPY</ToggleButton>
+                <ToggleButton Name="tbnSymbolAUDNZD" Grid.Row="0" Grid.Column="3" Style="{StaticResource SymbolButton}">AUDNZD</ToggleButton>
+                <ToggleButton Name="tbnSymbolAUDUSD" Grid.Row="0" Grid.Column="4" Style="{StaticResource SymbolButton}">AUDUSD</ToggleButton>
+                <ToggleButton Name="tbnSymbolCADCHF" Grid.Row="0" Grid.Column="5" Style="{StaticResource SymbolButton}">CADCHF</ToggleButton>
+                <ToggleButton Name="tbnSymbolCADJPY" Grid.Row="0" Grid.Column="6" Style="{StaticResource SymbolButton}">CADJPY</ToggleButton>
+                <ToggleButton Name="tbnSymbolCHFJPY" Grid.Row="1" Grid.Column="0" Style="{StaticResource SymbolButton}">CHFJPY</ToggleButton>
+                <ToggleButton Name="tbnSymbolEURAUD" Grid.Row="1" Grid.Column="1" Style="{StaticResource SymbolButton}">EURAUD</ToggleButton>
+                <ToggleButton Name="tbnSymbolEURCAD" Grid.Row="1" Grid.Column="2" Style="{StaticResource SymbolButton}">EURCAD</ToggleButton>
+                <ToggleButton Name="tbnSymbolEURCHF" Grid.Row="1" Grid.Column="3" Style="{StaticResource SymbolButton}">EURCHF</ToggleButton>
+                <ToggleButton Name="tbnSymbolEURGBP" Grid.Row="1" Grid.Column="4" Style="{StaticResource SymbolButton}">EURGBP</ToggleButton>
+                <ToggleButton Name="tbnSymbolEURJPY" Grid.Row="1" Grid.Column="5" Style="{StaticResource SymbolButton}">EURJPY</ToggleButton>
+                <ToggleButton Name="tbnSymbolEURNZD" Grid.Row="1" Grid.Column="6" Style="{StaticResource SymbolButton}">EURNZD</ToggleButton>
+                <ToggleButton Name="tbnSymbolEURUSD" Grid.Row="2" Grid.Column="0" Style="{StaticResource SymbolButton}">EURUSD</ToggleButton>
+                <ToggleButton Name="tbnSymbolGBPAUD" Grid.Row="2" Grid.Column="1" Style="{StaticResource SymbolButton}">GBPAUD</ToggleButton>
+                <ToggleButton Name="tbnSymbolGBPCAD" Grid.Row="2" Grid.Column="2" Style="{StaticResource SymbolButton}">GBPCAD</ToggleButton>
+                <ToggleButton Name="tbnSymbolGBPCHF" Grid.Row="2" Grid.Column="3" Style="{StaticResource SymbolButton}">GBPCHF</ToggleButton>
+                <ToggleButton Name="tbnSymbolGBPJPY" Grid.Row="2" Grid.Column="4" Style="{StaticResource SymbolButton}">GBPJPY</ToggleButton>
+                <ToggleButton Name="tbnSymbolGBPNZD" Grid.Row="2" Grid.Column="5" Style="{StaticResource SymbolButton}">GBPNZD</ToggleButton>
+                <ToggleButton Name="tbnSymbolGBPUSD" Grid.Row="2" Grid.Column="6" Style="{StaticResource SymbolButton}">GBPUSD</ToggleButton>
+                <ToggleButton Name="tbnSymbolNZDCAD" Grid.Row="3" Grid.Column="0" Style="{StaticResource SymbolButton}">NZDCAD</ToggleButton>
+                <ToggleButton Name="tbnSymbolNZDCHF" Grid.Row="3" Grid.Column="1" Style="{StaticResource SymbolButton}">NZDCHF</ToggleButton>
+                <ToggleButton Name="tbnSymbolNZDJPY" Grid.Row="3" Grid.Column="2" Style="{StaticResource SymbolButton}">NZDJPY</ToggleButton>
+                <ToggleButton Name="tbnSymbolNZDUSD" Grid.Row="3" Grid.Column="3" Style="{StaticResource SymbolButton}">NZDUSD</ToggleButton>
+                <ToggleButton Name="tbnSymbolUSDCAD" Grid.Row="3" Grid.Column="4" Style="{StaticResource SymbolButton}">USDCAD</ToggleButton>
+                <ToggleButton Name="tbnSymbolUSDCHF" Grid.Row="3" Grid.Column="5" Style="{StaticResource SymbolButton}">USDCHF</ToggleButton>
+                <ToggleButton Name="tbnSymbolUSDJPY" Grid.Row="3" Grid.Column="6" Style="{StaticResource SymbolButton}">USDJPY</ToggleButton>
+                <ToggleButton Name="tbnSymbolGER30" Grid.Row="4" Grid.Column="0" Style="{StaticResource SymbolButton}">GER30</ToggleButton>
+                <ToggleButton Name="tbnSymbolSPX500" Grid.Row="4" Grid.Column="1" Style="{StaticResource SymbolButton}">SPX500</ToggleButton>
+                <ToggleButton Name="tbnSymbolUKOIL" Grid.Row="4" Grid.Column="2" Style="{StaticResource SymbolButton}">UKOIL</ToggleButton>
+                <ToggleButton Name="tbnSymbolUS30" Grid.Row="4" Grid.Column="3" Style="{StaticResource SymbolButton}">US30</ToggleButton>
+                <ToggleButton Name="tbnSymbolUSOIL" Grid.Row="4" Grid.Column="4" Style="{StaticResource SymbolButton}">USOIL</ToggleButton>
+                <ToggleButton Name="tbnSymbolXAGUSD" Grid.Row="4" Grid.Column="5" Style="{StaticResource SymbolButton}">XAGUSD</ToggleButton>
+                <ToggleButton Name="tbnSymbolXAUUSD" Grid.Row="4" Grid.Column="6" Style="{StaticResource SymbolButton}">XAUUSD</ToggleButton>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Header="Timeframes" Margin="10" Padding="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ToggleButton Name="tbnTimeFrameM1" Grid.Column="0" Style="{StaticResource TimeframeButton}">M1</ToggleButton>
+                <ToggleButton Name="tbnTimeFrameM2" Grid.Column="1" Style="{StaticResource TimeframeButton}">M2</ToggleButton>
+                <ToggleButton Name="tbnTimeFrameM5" Grid.Column="2" Style="{StaticResource TimeframeButton}">M5</ToggleButton>
+                <ToggleButton Name="tbnTimeFrameM15" Grid.Column="3" Style="{StaticResource TimeframeButton}">M15</ToggleButton>
+                <ToggleButton Name="tbnTimeFrameM30" Grid.Column="4" Style="{StaticResource TimeframeButton}">M30</ToggleButton>
+                <ToggleButton Name="tbnTimeFrameH1" Grid.Column="5" Style="{StaticResource TimeframeButton}">H1</ToggleButton>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Header="Date range" Margin="10,0,10,0" Padding="10,10,10,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Calendar
+                    Name="calStart"
+                    Grid.Column="0" DisplayMode="Year"
+                    GotMouseCapture="OnCalendarGotMouseCapture" DisplayModeChanged="OnCalendarDisplayModeChanged"/>
+                <Calendar
+                    Name="calEnd"
+                    Grid.Column="1" DisplayMode="Year"
+                    GotMouseCapture="OnCalendarGotMouseCapture" DisplayModeChanged="OnCalendarDisplayModeChanged"/>
+            </Grid>
+        </GroupBox>
+        <DockPanel Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10,10,10,10" LastChildFill="False">
+            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Style="{StaticResource CommandButton}" Content="Generate" Click="CmdGenerate"/>
+            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Style="{StaticResource CommandButton}" Content="Close" Click="CmdClose"/>
+        </DockPanel>
+    </Grid>
+</Window>

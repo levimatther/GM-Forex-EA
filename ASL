@@ -1,0 +1,30 @@
+double ASL_level = 0; // Initial ASL level
+double ASL_factor = 1.5; // ASL factor to increase the level
+double ASL_distance = 100; // Distance to trigger the ASL
+
+// In the OnTick() function of your EA
+void OnTick()
+{
+    double current_price = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+    double stop_loss = OrderStopLoss();
+
+    // Calculate the current ASL level
+    double current_ASL = ASL_level + ASL_distance * Point;
+
+    // If the current price is above the current ASL level, update the stop loss
+    if (current_price > current_ASL && stop_loss < current_ASL)
+    {
+        // Calculate the new stop loss level
+        double new_stop_loss = current_ASL - ASL_distance * Point;
+        
+        // Modify the order stop loss
+        bool result = OrderModify(OrderTicket(), OrderOpenPrice(), NormalizeDouble(new_stop_loss, Digits), OrderTakeProfit(), 0, Green);
+        
+        // If the modification is successful, update the ASL level
+        if (result)
+        {
+            ASL_level = new_stop_loss;
+            ASL_distance *= ASL_factor;
+        }
+    }
+}
